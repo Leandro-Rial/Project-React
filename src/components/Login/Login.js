@@ -15,16 +15,26 @@ const Login = () => {
     setUsers({ ...users, [name]: value });
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if(!users.email | !users.password) {
+      alert("Please complete all the fields")
+    } else {
+      alert(`Welcome to Dell ${users.email}`);
+    }
+  };
+
   return (
-      <div className="container-login">
-        <div className="login">
-          <div className="slider">
-            <Slider />
-          </div>
-          <div className="login-content">
-            <img src={Dell} alt="" />
-            <div className="content">
-              <h1>Bienvenido de vuelta</h1>
+    <div className="container-login">
+      <div className="login">
+        <div className="slider">
+          <Slider />
+        </div>
+        <div className="login-content">
+          <img src={Dell} alt="" />
+          <div className="content">
+            <h1>Bienvenido de vuelta</h1>
+            <form onSubmit={onSubmit}>
               <div className="rows">
                 <label htmlFor="Email">Email</label>
                 <input
@@ -50,10 +60,7 @@ const Login = () => {
               </div>
               <div className="buttons">
                 <div className="modal-container">
-                  <button
-                    type="submit"
-                    className="iniciar-sesion"
-                  >
+                  <button type="submit" className="iniciar-sesion">
                     Iniciar Sesion
                   </button>
                 </div>
@@ -69,13 +76,14 @@ const Login = () => {
                   </button>
                 </div>
               </div>
-            </div>
-            <strong className="signup">
-              ¿Todavia no tenes una cuenta?&nbsp;<p>Crea una ahora</p>
-            </strong>
+            </form>
           </div>
+          <strong className="signup">
+            ¿Todavia no tenes una cuenta?&nbsp;<p>Crea una ahora</p>
+          </strong>
         </div>
       </div>
+    </div>
   );
 };
 
